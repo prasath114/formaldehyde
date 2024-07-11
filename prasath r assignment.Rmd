@@ -1,0 +1,45 @@
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+str(Formaldehyde)
+head(Formaldehyde)
+summary(Formaldehyde)
+```
+
+```{r}
+missing_values <- sapply(Formaldehyde, function(x) sum(is.na(x)))
+print(missing_values)
+```
+
+```{r}
+# Visualize the data
+# Histogram for numerical variables
+num_vars <- sapply(Formaldehyde, is.numeric)
+num_data <- Formaldehyde[, num_vars]
+```
+
+```{r}
+# boxplot
+ggplot(Formaldehyde, aes(x =carb, y =optden)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Humidity by Season", x= "carb", y= "optden")
+```
+
+```{r}
+# Scatter plot to show the relationship between two numeric variables (replace 'temp' and 'humidity' with appropriate column names)
+ggplot(Formaldehyde, aes(x = carb, y = optden)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of carb vs optden", x = "carb", y = "optden")
+```
+
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(Formaldehyde, aes(x = carb , y = optden)) +
+  geom_line(color = "blue") +
+  theme_minimal() +
+  labs(title = "formaldehyde", x = "carb", y = "optden")
+```
+
